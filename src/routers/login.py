@@ -91,10 +91,10 @@ def Get_All_Users():
 
 
 
-@user_router.get("/get_user/{user_id}", response_model=Get_All_User_Schema)
-def Get_User(user_id:str):
+@user_router.get("/get_user/{user_email}", response_model=Get_All_User_Schema)
+def Get_User(user_email:str):
     logger.info("Getting User Data")
-    find_user = db.query(User).filter(User.id == user_id,User.is_active == True , User.is_deleted == False , User.is_verified == True).first()
+    find_user = db.query(User).filter(User.email == user_email,User.is_active == True , User.is_deleted == False , User.is_verified == True).first()
 
     if not find_user:
         logger.error("No User Found")
@@ -105,11 +105,11 @@ def Get_User(user_id:str):
 
 
 
-@user_router.patch("/update_user/{user_id}")
-def Update_User(user_id:str, user:Update_User_Schema):
+@user_router.patch("/update_user/{user_email}")
+def Update_User(user_email:str, user:Update_User_Schema):
 
     logger.info("Getting User Data")
-    find_user = db.query(User).filter(User.id == user_id,User.is_active == True , User.is_verified == True , User.is_deleted == False).first()
+    find_user = db.query(User).filter(User.email == user_email,User.is_active == True , User.is_verified == True , User.is_deleted == False).first()
 
     if not find_user:
         logger.error("User Not Found")
@@ -133,11 +133,11 @@ def Update_User(user_id:str, user:Update_User_Schema):
 
 
 
-@user_router.delete("/delete_user/{user_id}")
-def Delete_User(user_id:str):
+@user_router.delete("/delete_user/{user_email}")
+def Delete_User(user_email:str):
 
     logger.info("Getting User Data")
-    find_user = db.query(User).filter(User.id == user_id,User.is_active == True , User.is_verified == True ).first()
+    find_user = db.query(User).filter(User.email == user_email,User.is_active == True , User.is_verified == True ).first()
 
     if not find_user:
         logger.error("User Not Found")
