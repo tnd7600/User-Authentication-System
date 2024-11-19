@@ -14,7 +14,7 @@ class Get_All_User_Schema(BaseModel):
 
 class Update_User_Schema(BaseModel):
     user_name: Optional[str] = None
-    email:Optional[EmailStr] = None
+    email: Optional[EmailStr] = None
     password: Optional[str] = None
  
 class Reset_pass_Schema(BaseModel):
@@ -23,9 +23,8 @@ class Reset_pass_Schema(BaseModel):
     enter_new_password: str
     re_enter_new_password: str
 
-
 class Forget_pass_Schema(BaseModel):
-
+    user_email: EmailStr
     otp: str
     enter_new_password: str
     re_enter_new_password: str
