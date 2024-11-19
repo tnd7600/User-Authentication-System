@@ -2,7 +2,7 @@ from fastapi import APIRouter,HTTPException
 from database.database import SessionLocal
 from src.schemas.login import Update_User_Schema,Get_All_User_Schema,Register_User_Schema,Reset_pass_Schema,Forget_pass_Schema
 from src.models.login import User,Otp
-from src.utils.login import find_same_email,find_same_username,pwd_context,send_email,get_token,pass_checker,generate_otp,generate_otp,verify_otp
+from src.utils.login import find_same_email,find_same_username,pwd_context,get_token,pass_checker,generate_otp,generate_otp,verify_otp
 from logs.log_config import logger
 import uuid,random
 

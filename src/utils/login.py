@@ -80,7 +80,7 @@ def send_email(receiver, subject, body):
 
     try:
         with smtplib.SMTP(smtp_server, smtp_port) as server:
-            server.set_debuglevel(1)  # Enable debugging output
+            server.set_debuglevel(1) 
             server.starttls()
             server.login(smtp_user, smtp_pass)
             server.sendmail(SENDER_EMAIL_ID, receiver, msg.as_string())
@@ -103,7 +103,7 @@ def get_token(id:str,user_name: str, email: str):
         "id": id,
         "username": user_name,
         "email": email,
-        "exp": datetime.now(timezone.utc) + timedelta(seconds=30),  # Expiration claim
+        "exp": datetime.now(timezone.utc) + timedelta(seconds=30),  
     }
 
     access_token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
@@ -113,7 +113,7 @@ def get_token(id:str,user_name: str, email: str):
 
 def decode_token(token: str):
     try:
-        # This will throw an ExpiredSignatureError if the token has expired
+    
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         id = payload.get("id")
         email = payload.get("email")
